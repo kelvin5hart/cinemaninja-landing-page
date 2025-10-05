@@ -253,21 +253,42 @@ header {
   text-align: left;
 }
 
-.app-name-badge {
-  display: inline-block;
+.hero-branding {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
   margin-bottom: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  border-radius: 2rem;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
 }
 
-.app-name {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.05em;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.hero-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.hero-app-name {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text-color);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.hero-tagline {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: var(--text-color);
+  letter-spacing: -0.02em;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 600px;
 }
 
 .hero h1 {
@@ -941,6 +962,25 @@ header {
   .hero {
     padding: 5rem 1rem 2rem;
     min-height: auto;
+  }
+
+  .hero-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .hero-app-name {
+    font-size: 1.75rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
   }
 
   .hero h1 {

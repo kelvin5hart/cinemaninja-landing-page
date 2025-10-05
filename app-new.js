@@ -119,15 +119,17 @@ function App() {
 
       e('div', { className: 'hero-content' },
         e('div', { className: 'hero-text' },
-          e('div', { className: 'app-name-badge fade-in-up' },
-            e('span', { className: 'app-name' }, 'CinemaNinja')
+          e('div', { className: 'hero-branding fade-in-up' },
+            e('img', { src: './assets/logo.png', alt: 'CinemaNinja Logo', className: 'hero-logo' }),
+            e('h1', { className: 'hero-app-name' }, 'CinemaNinja')
           ),
-          e('h1', { className: 'fade-in-up delay-1' },
-            'Where Movie Lovers ',
-            e('span', { className: 'highlight' }, 'Meet, Compete & Discover')
+          e('h2', { className: 'hero-tagline fade-in-up delay-1' },
+            'Show Off Your ',
+            e('span', { className: 'highlight' }, 'Great Taste'),
+            ' in Movies'
           ),
-          e('p', { className: 'fade-in-up delay-2' },
-            'The only social platform built exclusively for movie enthusiasts. Join clans, compete in trivia, and discover your next favorite film with people who share your passion.'
+          e('p', { className: 'hero-description fade-in-up delay-2' },
+            'Become a movie ninja. Rate films, gain followers, and prove you\'ve got the best picks. Join clans, compete in trivia, and let your taste speak louder than words.'
           ),
           e('div', { className: 'buttons-container fade-in-up delay-3', id: 'download' },
             e('a', {
