@@ -411,6 +411,8 @@ function App() {
         e('div', { className: 'footer-links' },
           e('a', { href: '/terms.html', className: 'footer-link' }, 'Terms & Conditions'),
           e('span', { className: 'footer-separator' }, '•'),
+          e('a', { href: '/privacy.html', className: 'footer-link' }, 'Privacy Policy'),
+          e('span', { className: 'footer-separator' }, '•'),
           e('a', { href: 'mailto:support@cinemaninja.app', className: 'footer-link' }, 'Contact')
         )
       ),
