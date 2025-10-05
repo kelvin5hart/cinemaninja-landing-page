@@ -119,14 +119,17 @@ function App() {
 
       e('div', { className: 'hero-content' },
         e('div', { className: 'hero-text' },
-          e('h1', { className: 'fade-in-up' },
+          e('div', { className: 'app-name-badge fade-in-up' },
+            e('span', { className: 'app-name' }, 'CinemaNinja')
+          ),
+          e('h1', { className: 'fade-in-up delay-1' },
             'Where Movie Lovers ',
             e('span', { className: 'highlight' }, 'Meet, Compete & Discover')
           ),
-          e('p', { className: 'fade-in-up delay-1' },
+          e('p', { className: 'fade-in-up delay-2' },
             'The only social platform built exclusively for movie enthusiasts. Join clans, compete in trivia, and discover your next favorite film with people who share your passion.'
           ),
-          e('div', { className: 'buttons-container fade-in-up delay-2', id: 'download' },
+          e('div', { className: 'buttons-container fade-in-up delay-3', id: 'download' },
             e('a', {
               href: 'https://apps.apple.com/app/id1612017004',
               target: '_blank',
@@ -150,7 +153,7 @@ function App() {
               })
             )
           ),
-          e('p', { className: 'hero-subtext fade-in-up delay-3' },
+          e('p', { className: 'hero-subtext fade-in-up delay-4' },
             '✓ Free to Download  •  ✓ No Subscriptions  •  ✓ 4.5★ Rating'
           )
         ),
@@ -413,7 +416,7 @@ function App() {
           e('span', { className: 'footer-separator' }, '•'),
           e('a', { href: '/privacy.html', className: 'footer-link' }, 'Privacy Policy'),
           e('span', { className: 'footer-separator' }, '•'),
-          e('a', { href: 'mailto:support@cinemaninja.app', className: 'footer-link' }, 'Contact')
+          e('a', { href: 'mailto:cinemaninja@kahstudios.com', className: 'footer-link' }, 'Contact')
         )
       ),
       e('p', { style: { marginTop: '0.5rem' } }, 'Made with ❤️ for movie lovers.')
