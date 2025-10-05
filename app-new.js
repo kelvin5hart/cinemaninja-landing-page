@@ -406,8 +406,15 @@ function App() {
 
     // Footer
     e('footer', { className: 'footer' },
-      e('p', null, `© ${new Date().getFullYear()} CinemaNinja. All rights reserved.`),
-      e('p', null, 'Made with ❤️ for movie lovers.')
+      e('div', { className: 'footer-content' },
+        e('p', null, `© ${new Date().getFullYear()} CinemaNinja. All rights reserved.`),
+        e('div', { className: 'footer-links' },
+          e('a', { href: '/terms.html', className: 'footer-link' }, 'Terms & Conditions'),
+          e('span', { className: 'footer-separator' }, '•'),
+          e('a', { href: 'mailto:support@cinemaninja.app', className: 'footer-link' }, 'Contact')
+        )
+      ),
+      e('p', { style: { marginTop: '0.5rem' } }, 'Made with ❤️ for movie lovers.')
     )
   );
 }
