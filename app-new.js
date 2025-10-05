@@ -119,19 +119,22 @@ function App() {
 
       e('div', { className: 'hero-content' },
         e('div', { className: 'hero-text' },
-          e('div', { className: 'hero-branding fade-in-up' },
-            e('img', { src: './assets/logo.png', alt: 'CinemaNinja Logo', className: 'hero-logo' }),
-            e('h1', { className: 'hero-app-name' }, 'CinemaNinja')
-          ),
+          e('img', { src: './assets/logo.png', alt: 'CinemaNinja Logo', className: 'hero-logo fade-in-up' }),
           e('h2', { className: 'hero-tagline fade-in-up delay-1' },
-            'Show Off Your ',
-            e('span', { className: 'highlight' }, 'Great Taste'),
+            'Prove You Have ',
+            e('span', { className: 'tagline-highlight' }, 'Great Taste'),
             ' in Movies'
           ),
           e('p', { className: 'hero-description fade-in-up delay-2' },
-            'Become a movie ninja. Rate films, gain followers, and prove you\'ve got the best picks. Join clans, compete in trivia, and let your taste speak louder than words.'
+            'Rate films. Gain followers. Build your movie clan. Compete in trivia. Become the ultimate ',
+            e('strong', { className: 'ninja-text' }, 'CinemaNinja'),
+            ' and let your taste do the talking.'
           ),
-          e('div', { className: 'buttons-container fade-in-up delay-3', id: 'download' },
+          e('p', { className: 'hero-cta fade-in-up delay-3' },
+            e('span', { className: 'cta-arrow' }, '👇'),
+            ' Download Now & Start Your Journey'
+          ),
+          e('div', { className: 'buttons-container fade-in-up delay-4', id: 'download' },
             e('a', {
               href: 'https://apps.apple.com/app/id1612017004',
               target: '_blank',
@@ -155,7 +158,7 @@ function App() {
               })
             )
           ),
-          e('p', { className: 'hero-subtext fade-in-up delay-4' },
+          e('p', { className: 'hero-subtext fade-in-up delay-5' },
             '✓ Free to Download  •  ✓ No Subscriptions  •  ✓ 4.5★ Rating'
           )
         ),
