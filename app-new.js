@@ -285,57 +285,99 @@ function App() {
     e('section', { className: 'testimonials' },
       e('div', { className: 'testimonials-container' },
         e('h2', null, 'Loved by Movie Enthusiasts Worldwide'),
-        e('div', { className: 'testimonials-grid' },
-          e('div', { className: 'testimonial-card' },
-            e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
-            e('p', { className: 'testimonial-text' },
-              '"Finally, a movie app that actually gets me! The clan feature is genius - I found my people."'
+        e('div', { className: 'testimonials-scroll-wrapper' },
+          e('div', { className: 'testimonials-scroll' },
+            // First set
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Finally found my film tribe! The clan feature is fire 🔥"'),
+              e('div', { className: 'author-name' }, 'Sarah M. • New York')
             ),
-            e('div', { className: 'testimonial-author' },
-              e('div', { className: 'author-avatar' }, '👤'),
-              e('div', null,
-                e('div', { className: 'author-name' }, 'Sarah M.'),
-                e('div', { className: 'author-location' }, 'New York, USA')
-              )
-            )
-          ),
-          e('div', { className: 'testimonial-card' },
-            e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
-            e('p', { className: 'testimonial-text' },
-              '"Best movie recommendations I\'ve ever gotten. Way better than Netflix\'s algorithm!"'
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Nollywood section is top tier! Found so many classics I missed"'),
+              e('div', { className: 'author-name' }, 'Chidi A. • Abuja')
             ),
-            e('div', { className: 'testimonial-author' },
-              e('div', { className: 'author-avatar' }, '👤'),
-              e('div', null,
-                e('div', { className: 'author-name' }, 'James K.'),
-                e('div', { className: 'author-location' }, 'London, UK')
-              )
-            )
-          ),
-          e('div', { className: 'testimonial-card' },
-            e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
-            e('p', { className: 'testimonial-text' },
-              '"The trivia games are addictive! I love competing with other film nerds. Such a fun community."'
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Better recommendations than Netflix, no cap"'),
+              e('div', { className: 'author-name' }, 'James K. • London')
             ),
-            e('div', { className: 'testimonial-author' },
-              e('div', { className: 'author-avatar' }, '👤'),
-              e('div', null,
-                e('div', { className: 'author-name' }, 'Maria G.'),
-                e('div', { className: 'author-location' }, 'Toronto, Canada')
-              )
-            )
-          ),
-          e('div', { className: 'testimonial-card' },
-            e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
-            e('p', { className: 'testimonial-text' },
-              '"Best app for Nollywood and African cinema! Love finding movies from home and connecting with other fans."'
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Trivia nights with my clan go crazy! We rep Nollywood hard"'),
+              e('div', { className: 'author-name' }, 'Blessing O. • Lagos')
             ),
-            e('div', { className: 'testimonial-author' },
-              e('div', { className: 'author-avatar' }, '👤'),
-              e('div', null,
-                e('div', { className: 'author-name' }, 'Temitope O.'),
-                e('div', { className: 'author-location' }, 'Lagos, Nigeria')
-              )
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"I\'ve watched more movies in 2 months than all year. Addicted!"'),
+              e('div', { className: 'author-name' }, 'Maria G. • Toronto')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"As a Naija babe, seeing our movies featured properly hits different ❤️"'),
+              e('div', { className: 'author-name' }, 'Temitope O. • Lagos')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"The ratings are actually honest. Found some hidden gems!"'),
+              e('div', { className: 'author-name' }, 'David L. • Sydney')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"My guy, this app sweet die! African cinema dey shine here"'),
+              e('div', { className: 'author-name' }, 'Kunle F. • Ibadan')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Love how global it is. Found Bollywood fans who also love Nollywood"'),
+              e('div', { className: 'author-name' }, 'Aisha M. • Port Harcourt')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"UI is clean, features are solid. Actually worth the hype"'),
+              e('div', { className: 'author-name' }, 'Mike C. • Chicago')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Been showing all my friends. We got a whole Lagos clan now 💪"'),
+              e('div', { className: 'author-name' }, 'Funmi D. • Lagos')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Finally, someone made an app for real movie lovers!"'),
+              e('div', { className: 'author-name' }, 'Alex P. • Berlin')
+            ),
+            // Duplicate for seamless loop
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Finally found my film tribe! The clan feature is fire 🔥"'),
+              e('div', { className: 'author-name' }, 'Sarah M. • New York')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Nollywood section is top tier! Found so many classics I missed"'),
+              e('div', { className: 'author-name' }, 'Chidi A. • Abuja')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Better recommendations than Netflix, no cap"'),
+              e('div', { className: 'author-name' }, 'James K. • London')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"Trivia nights with my clan go crazy! We rep Nollywood hard"'),
+              e('div', { className: 'author-name' }, 'Blessing O. • Lagos')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"I\'ve watched more movies in 2 months than all year. Addicted!"'),
+              e('div', { className: 'author-name' }, 'Maria G. • Toronto')
+            ),
+            e('div', { className: 'testimonial-card' },
+              e('div', { className: 'stars' }, '⭐⭐⭐⭐'),
+              e('p', { className: 'testimonial-text' }, '"As a Naija babe, seeing our movies featured properly hits different ❤️"'),
+              e('div', { className: 'author-name' }, 'Temitope O. • Lagos')
             )
           )
         )
