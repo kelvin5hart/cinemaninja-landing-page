@@ -46,10 +46,13 @@ const features = [
 ];
 
 function App() {
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = React.useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
 
   React.useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
