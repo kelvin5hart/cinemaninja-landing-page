@@ -5,6 +5,189 @@
 
 const e = React.createElement;
 
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyC1xc6dItrbJQSUquol_jc7sqfRces0ODU",
+  authDomain: "cinema-ninja.firebaseapp.com",
+  projectId: "cinema-ninja",
+  storageBucket: "cinema-ninja.appspot.com",
+  messagingSenderId: "1069558837780",
+  appId: "1:1069558837780:android:a14ae582b6565a67b52d01"
+};
+
+// Initialize Firebase app
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+const db = firebase.firestore();
+
+// Top Ninjas Component - fetches and displays top profiles from Firebase
+// Split into two sections: Top by Recommendations and Top by Followers
+function TopNinjas() {
+  const [topByRecommendations, setTopByRecommendations] = React.useState([]);
+  const [topByFollowers, setTopByFollowers] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    async function fetchTopProfiles() {
+      try {
+        console.log('Starting to fetch top profiles...');
+        const usersRef = db.collection('users');
+        const snapshot = await usersRef.get(); // Fetch ALL users
+
+        console.log('Total users fetched:', snapshot.docs.length);
+
+        const allProfiles = snapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            uid: doc.id,
+            name: data.name || 'Unknown User',
+            username: data.username || '',
+            pictureUrl: data.pictureUrl || '',
+            followers: data.followers || 0,
+            recommendCount: data.recommendCount || 0,
+            recommend: data.recommend || [],
+            bio: data.bio || ''
+          };
+        });
+
+        console.log('All profiles:', allProfiles);
+
+        // Find the Admin Ninja profile specifically
+        const adminNinja = allProfiles.find(p => p.name === 'Admin Ninja');
+        console.log('Admin Ninja profile:', adminNinja);
+        console.log('Admin Ninja recommendations:', adminNinja ? adminNinja.recommend.length : 'NOT FOUND');
+        console.log('Admin Ninja followers:', adminNinja ? adminNinja.followers : 'NOT FOUND');
+
+        // Find max recommendations
+        const maxRecommendations = Math.max(...allProfiles.map(p => p.recommend.length));
+        console.log('Max recommendations found:', maxRecommendations);
+        console.log('Profile with max recommendations:', allProfiles.find(p => p.recommend.length === maxRecommendations));
+
+        // Top by Recommendations - users with most recommendations (top 10)
+        const byRecommendations = allProfiles
+          .filter(profile => profile.recommend.length >= 1) // At least 1 recommendation
+          .sort((a, b) => b.recommend.length - a.recommend.length)
+          .slice(0, 10);
+
+        // Top by Followers - most popular users (top 10)
+        const byFollowers = allProfiles
+          .filter(profile => profile.followers > 0) // At least 1 follower
+          .sort((a, b) => b.followers - a.followers)
+          .slice(0, 10);
+
+        console.log('Top by recommendations:', byRecommendations);
+        console.log('Recommendation counts:', byRecommendations.map(p => `${p.name}: ${p.recommend.length}`));
+        console.log('Top by followers:', byFollowers);
+        console.log('Follower counts:', byFollowers.map(p => `${p.name}: ${p.followers}`));
+
+        setTopByRecommendations(byRecommendations);
+        setTopByFollowers(byFollowers);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching top profiles:', error);
+        console.error('Error details:', error.message, error.code);
+        setLoading(false);
+      }
+    }
+
+    fetchTopProfiles();
+  }, []);
+
+  if (loading) {
+    return e('section', { className: 'top-ninjas' },
+      e('div', { className: 'top-ninjas-container' },
+        e('h2', null, 'Top Community Members'),
+        e('p', { className: 'section-subtitle' }, 'Meet our most influential movie enthusiasts'),
+        e('div', { className: 'loading-spinner' }, 'Loading...')
+      )
+    );
+  }
+
+  if (topByRecommendations.length === 0 && topByFollowers.length === 0) {
+    return null; // Hide section if no data
+  }
+
+  const formatFollowers = (count) => {
+    if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M`;
+    if (count >= 1000) return `${(count / 1000).toFixed(1)}K`;
+    return count.toString();
+  };
+
+  const renderProfileCard = (profile, idx, highlightStat) => {
+    return e('div', {
+      key: profile.uid,
+      className: 'ninja-card',
+      style: { animationDelay: `${idx * 0.1}s` }
+    },
+      e('div', { className: 'ninja-rank' }, `#${idx + 1}`),
+      e('div', { className: 'ninja-avatar' },
+        profile.pictureUrl && !profile.pictureUrl.includes('default')
+          ? e('img', { src: profile.pictureUrl, alt: profile.name })
+          : e('div', { className: 'ninja-avatar-placeholder' },
+              profile.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
+            )
+      ),
+      e('h3', { className: 'ninja-name' }, profile.name),
+      profile.username && e('p', { className: 'ninja-username' }, `@${profile.username}`),
+      profile.bio && e('p', { className: 'ninja-bio' }, profile.bio),
+      e('div', { className: 'ninja-stats' },
+        e('div', { className: 'ninja-stat' },
+          e('span', {
+            className: highlightStat === 'followers' ? 'stat-value stat-highlighted' : 'stat-value'
+          }, formatFollowers(profile.followers)),
+          e('span', { className: 'stat-label' }, 'Followers')
+        ),
+        e('div', { className: 'ninja-stat' },
+          e('span', {
+            className: highlightStat === 'recommendations' ? 'stat-value stat-highlighted' : 'stat-value'
+          }, profile.recommend.length),
+          e('span', { className: 'stat-label' }, 'Recommendations')
+        )
+      )
+    );
+  };
+
+  return e('section', { className: 'top-ninjas' },
+    e('div', { className: 'top-ninjas-container' },
+      e('h2', null, 'Top Community Members'),
+      e('p', { className: 'section-subtitle' }, 'Meet our most influential movie enthusiasts'),
+
+      // Top by Recommendations Section
+      topByRecommendations.length > 0 && e('div', { className: 'ninja-category' },
+        e('h3', { className: 'ninja-category-title' },
+          e('i', { className: 'fa-solid fa-star' }),
+          ' Best Taste Makers'
+        ),
+        e('p', { className: 'ninja-category-subtitle' }, 'Users with the most movie recommendations'),
+        e('div', { className: 'ninja-carousel-wrapper' },
+          e('div', { className: 'ninja-carousel' },
+            topByRecommendations.map((profile, idx) =>
+              renderProfileCard(profile, idx, 'recommendations')
+            )
+          )
+        )
+      ),
+
+      // Top by Followers Section
+      topByFollowers.length > 0 && e('div', { className: 'ninja-category' },
+        e('h3', { className: 'ninja-category-title' },
+          e('i', { className: 'fa-solid fa-users' }),
+          ' Most Popular'
+        ),
+        e('p', { className: 'ninja-category-subtitle' }, 'Users with the largest following'),
+        e('div', { className: 'ninja-carousel-wrapper' },
+          e('div', { className: 'ninja-carousel' },
+            topByFollowers.map((profile, idx) =>
+              renderProfileCard(profile, idx, 'followers')
+            )
+          )
+        )
+      )
+    )
+  );
+}
+
 // Feature definitions
 const features = [
   {
@@ -283,6 +466,9 @@ function App() {
         )
       )
     ),
+
+    // Top Ninjas section
+    e(TopNinjas),
 
     // Testimonials section
     e('section', { className: 'testimonials' },
